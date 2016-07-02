@@ -1,0 +1,58 @@
+version: '2'
+
+services:
+
+### PHP-FPM Container ###
+
+    php-fpm:
+        build:
+             context: ./php-fpm
+             dockerfile: Dockerfile-56
+        volumes_from:
+             - application
+             - data
+        expose:
+             - "9000"
+
+### Fad application ###
+
+    application:
+        build: ./application
+        volumes:
+            - ../:/var/www
+
+### Nginx Server Container ###
+
+    nginx:
+        build: ./Nginx
+        volumes_from:
+            - application
+            - data
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php-fpm
+
+### MySQL Container ###
+
+    mysql:
+        build: ./mysql
+        volumes_from:
+            - data
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: fadfun
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+
+### Data Container: database and application data. ###
+
+    data:
+        build: ./data
+        volumes:
+            - ../data/lib/mysql:/var/lib/mysql
+            - ../data/logs/nginx/:/var/log/nginx
+            - ../data/app-data/:/var/app-data
