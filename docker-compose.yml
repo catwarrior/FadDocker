@@ -5,9 +5,14 @@ services:
 ### work space ###
     workspace:
         build: ./workspace
+        volumes:
+            - ./workspace/backup.sh:/backup.sh
+            - ./workspace/restore.sh:/restore.sh
         volumes_from:
             - application
             - data
+        links:
+            - mysql
 
 ### PHP-FPM Container ###
 

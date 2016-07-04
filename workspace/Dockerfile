@@ -20,5 +20,6 @@ RUN apt-get update && apt-get install -y \
     php5-curl \
     php5-gd \
     php5-intl \
+    mysql-client \
     --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
