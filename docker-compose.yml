@@ -2,6 +2,13 @@ version: '2'
 
 services:
 
+### work space ###
+    workspace:
+        build: ./workspace
+        volumes_from:
+            - application
+            - data
+
 ### PHP-FPM Container ###
 
     php-fpm:
@@ -24,7 +31,7 @@ services:
 ### Nginx Server Container ###
 
     nginx:
-        build: ./Nginx
+        build: ./nginx
         volumes_from:
             - application
             - data
