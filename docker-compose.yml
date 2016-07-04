@@ -51,8 +51,6 @@ services:
             - "3306:3306"
         environment:
             MYSQL_DATABASE: fadfun
-            MYSQL_USER: root
-            MYSQL_PASSWORD: root
             MYSQL_ROOT_PASSWORD: root
 
 ### Data Container: database and application data. ###
@@ -60,6 +58,6 @@ services:
     data:
         build: ./data
         volumes:
-            - ../data/lib/mysql:/var/lib/mysql
-            - ../data/logs/nginx/:/var/log/nginx
-            - ../data/app-data/:/var/app-data
+            - ../data-volume/db-backup/:/db-backup
+            - ../data-volume/logs/nginx/:/var/log/nginx
+            - ../data-volume/app-data/:/var/app-data
