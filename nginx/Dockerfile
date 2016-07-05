@@ -3,7 +3,6 @@ FROM nginx:latest
 MAINTAINER Stephan <lishufan00@aliyun.com>
 
 ADD nginx.conf /etc/nginx/
-ADD fad.conf /etc/nginx/sites-available/
 
 RUN echo "upstream php-upstream { server php-fpm:9000; }" > /etc/nginx/conf.d/upstream.conf
 

@@ -42,6 +42,8 @@ services:
         volumes_from:
             - application
             - data
+        volumes:
+            - ./nginx/fad.conf:/etc/nginx/sites-available/fad.conf
         ports:
             - "80:80"
             - "443:443"
