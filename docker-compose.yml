@@ -13,6 +13,8 @@ services:
             - data
         links:
             - mysql
+        env_file:
+            - ~/fad.env
 
 ### PHP-FPM Container ###
 
@@ -54,9 +56,8 @@ services:
             - data
         ports:
             - "3306:3306"
-        environment:
-            MYSQL_DATABASE: fadfun
-            MYSQL_ROOT_PASSWORD: root
+        env_file:
+            - ~/fad.env
 
 ### Data Container: database and application data. ###
 

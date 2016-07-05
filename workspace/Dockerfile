@@ -23,3 +23,5 @@ RUN apt-get update && apt-get install -y \
     mysql-client \
     --no-install-recommends \
     && rm -r /var/lib/apt/lists/*
+
+ENV MYSQL_DATABASE=db1 MYSQL_ROOT_PASSWORD=db1
